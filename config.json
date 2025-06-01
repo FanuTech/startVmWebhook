@@ -1,0 +1,19 @@
+{
+    "name":          "StatVM Webhook Plugin",
+    "shortName":     "statVmWebhook",
+    "version":       "0.1.0",
+    "author":        "Fanu Tech",
+    "description":   "When MeshCentral emits a 'statvm' event, send the same JSON to http://localhost:1880/mfavm.",
+    "hasAdminPanel": true,
+    "homepage":      "",
+    "changelogUrl":  "",
+    "configUrl":     "",
+    "downloadUrl":   "",
+    "repository": {
+      "type": "git",
+      "url":  ""
+    },
+    "versionHistoryUrl": "",
+    "meshCentralCompat": ">=0.7.29"
+  }
+  
