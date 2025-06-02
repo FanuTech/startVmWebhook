@@ -15,5 +15,6 @@
     },
     "versionHistoryUrl": "",
     "meshCentralCompat": ">=0.7.29"
+    "main":             "index.js"
   }
   
