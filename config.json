@@ -1,9 +1,9 @@
 {
-    "name":          "StatVM Webhook Plugin",
-    "shortName":     "statVmWebhook",
+    "name":          "startVm Webhook Plugin",
+    "shortName":     "startVmWebhook",
     "version":       "0.1.0",
     "author":        "Fanu Tech",
-    "description":   "When MeshCentral emits a 'statvm' event, send the same JSON to http://localhost:1880/mfavm.",
+    "description":   "When MeshCentral emits a 'startVm' event, send the same JSON to http://localhost:1880/mfavm.",
     "hasAdminPanel": true,
     "homepage":      "https://github.com/FanuTech/startVmWebhook",
     "changelogUrl":  "",
