@@ -1,7 +1,7 @@
 {
     "name":          "startVm Webhook Plugin",
     "shortName":     "startVmWebhook",
-    "version":       "0.1.2",
+    "version":       "0.1.3",
     "author":        "Fanu Tech",
     "description":   "When MeshCentral emits a 'startVm' event, send the same JSON to http://localhost:1880/mfavm.",
     "hasAdminPanel": true,
