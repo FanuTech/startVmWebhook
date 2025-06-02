@@ -1,8 +1,8 @@
 //
-// modules_common/statVmWebhook.js
+// modules_common/startVmWebhook.js
 //
 // This file runs inside MeshCentral’s “common” (server-side) process. 
-// We listen for the “statvm” event and forward a JSON POST to http://localhost:1880/mfavm.
+// We listen for the “startVm” event and forward a JSON POST to http://localhost:1880/mfavm.
 //
 
 module.exports = function (parent) {
@@ -12,13 +12,13 @@ module.exports = function (parent) {
 
   // If, for some reason, the plugin is loaded before `server.config` is ready, guard it:
   if (!server || !server.on) {
-    parent.debug("statVmWebhook: WARNING—server object not ready; skipping registration");
+    parent.debug("startVmWebhook: WARNING—server object not ready; skipping registration");
     return;
   }
 
-  // Register a listener for the “statvm” event.
+  // Register a listener for the “startVm” event.
   //
-  // According to the MeshCentral code, whenever the server emits “statvm” (for example,
+  // According to the MeshCentral code, whenever the server emits “startVm” (for example,
   // when an agent reports VM state), listeners will receive two arguments:
   //   1) The device object (with .agent and .record fields)
   //   2) An `info` object that typically looks like: { vminfo: { … } }
@@ -27,7 +27,7 @@ module.exports = function (parent) {
   //    { vmName: "<hostname>", action: "start" }
   //
   // and POST it to http://localhost:1880/mfavm.
-  server.on("statvm", function (device, info) {
+  server.on("startVm", function (device, info) {
     try {
       // 1) Extract the hostname. In most versions of MeshCentral,
       //    `device.agent.DeviceName` is the string each agent uses as its hostname.
@@ -68,20 +68,20 @@ module.exports = function (parent) {
         let body = "";
         res.on("data", (chunk) => { body += chunk; });
         res.on("end", () => {
-          parent.debug(`statVmWebhook: HTTP ${res.statusCode} → ${body}`);
+          parent.debug(`startVmWebhook: HTTP ${res.statusCode} → ${body}`);
         });
       });
       req.on("error", (err) => {
-        parent.debug("statVmWebhook: HTTP request error: " + err.message);
+        parent.debug("startVmWebhook: HTTP request error: " + err.message);
       });
       req.write(payload);
       req.end();
 
       // 6) Nothing to return—the event handler is “fire-and-forget.”      
     } catch (e) {
-      parent.debug("statVmWebhook: Exception: " + e.toString());
+      parent.debug("startVmWebhook: Exception: " + e.toString());
     }
   });
 
-  parent.debug("statVmWebhook: Initialized and listening for ‘statvm’ events");
+  parent.debug("startVmWebhook: Initialized and listening for ‘startVm’ events");
 };
